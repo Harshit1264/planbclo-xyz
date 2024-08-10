@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link rel="stylesheet" href="/css/store.css">
+     
+</head>
+<body>
+    <%- include('topbar') %>
+    <div class="container">
+        <div id="product-list" class="product-list">
+            <!-- Categories and products will be dynamically loaded here -->
+        </div>
+    </div>
+    <script src="/js/store.js"></script>
+    <script src="/js/cart.js"></script>
+    <%- include('footbar') %>
+</body>
+</html>
+
+<div class="container clearfix">
+    <div class="sidebar">
+        <h2>COLLECTIONS</h2>
+        <ul>
+            <li><a href="#">New Arrival</a></li>
+            <li><a href="#">Ready to Wear</a></li>
+            <li><a href="#">Shoes</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Essentials</a></li>
+            <li><a href="#">Oils</a></li>
+        </ul>
+
+        <div class="filter-section">
+            <h3>SIZE</h3>
+            <div class="filter-options">
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+                <button>X</button>
+                <button>XL</button>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h3>COLORS</h3>
+            <div class="filter-options">
+                <button style="background-color: #5a4a3c;"></button>
+                <button style="background-color: #8c7b75;"></button>
+                <button style="background-color: #3c3c3c;"></button>
+                <button style="background-color: #4a3c5a;"></button>
+                <button style="background-color: #8c5a75;"></button>
+                <button style="background-color: #5a758c;"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1 class="page-title">OUR PRODUCT</h1>
+        <input type="text" class="search-bar" placeholder="Search">
+        <div class="sort-by">
+            <label for="sort">Sort by:</label>
+            <select id="sort">
+                <option value="popular">Popular</option>
+                <option value="newest">Newest</option>
+                <option value="price-low-high">Price: Low to High</option>
+                <option value="price-high-low">Price: High to Low</option>
+            </select>
+        </div>
+        <div id="product-list" class="product-list">
+            <!-- Categories and products will be dynamically loaded here -->
+        </div>
+    </div>
+</div>

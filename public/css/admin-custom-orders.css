@@ -1,0 +1,264 @@
+/* Custom Order Page CSS */
+:root {
+    --primary-color: #000000;
+    --secondary-color: #4A4A4A;
+    --accent-color: #D3D3D3;
+    --background-color: #ffffffcb;
+    --text-color: #1C1C1C;
+}
+
+/* General Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    align-items: center;
+    height: 100%;
+    
+}
+
+/* Heading */
+h1, h2 {
+    text-align: center;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    font-style: oblique;
+    /* color: wheat; */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+td{
+    color: #000000;
+}
+
+table, th, td {
+    border: 1px solid var(--accent-color);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button Styles */
+button {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #c0392b;
+}
+
+/* Flash Messages */
+.flash-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.flash-message.success {
+    background-color: #2ecc71;
+    color: #ffffff;
+}
+
+.flash-message.error {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
+
+/* Topbar and Footbar */
+.topbar, .footbar {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.topbar {
+    top: 0;
+}
+
+.footbar {
+    bottom: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+
+/* Order Section Styles */
+.order-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--background-color);
+    padding: 30px;
+    width: 80%;
+    border-radius: 20px;
+}
+
+.order-section ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.order-section li {
+    background-color: #27272a;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #d9d9d9;
+    min-width: 40%;
+}
+
+.order-section p {
+    margin: 0 0 10px 0;
+    color: #d9d9d9;
+}
+
+.order-section p:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    height: 100%;
+    border-radius: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Input Form Styles */
+.inputForm {
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.2s ease-in-out;
+    margin: 10px;
+    width: 80%;
+}
+
+.inputForm label {
+    min-width: 30%;
+}
+
+.input {
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+}
+
+.input:focus {
+    outline: none;
+}
+
+.inputForm:focus-within {
+    border: 1.5px solid #2d79f3;
+}
+
+::placeholder {
+    margin: 5px;
+    font-family: inherit;
+}
+
+#error-container {
+    display: none;
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.button-submit {
+    margin: 20px 0 10px 0;
+    background-color: #151717;
+    border: none;
+    color: var(--accent-color);
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+    align-self: center;
+    margin: 1% 10%;
+}
+
+.button-submit:hover {
+    background-color: #252727;
+}

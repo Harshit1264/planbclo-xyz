@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/custom-order.css">
+</head>
+<body>
+    <%- include('topbar') %>
+    <div class="container">
+        <h1 class=" br c-head">Create Your Own Custom Order</h1>
+        <div class="profile-section">
+            <form action="/custom-order/create-custom-order" method="POST" class="form">
+                <div class="inputForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="<%= user.firstname %> <%= user.lastname %>" readonly class="input">
+                </div>
+                <div class="inputForm">
+                    <label for="clothingType">Type of Clothing:</label>
+                    <select id="clothingType" name="clothingType" required class="input">
+                        <option value="T-Shirt">T-Shirt</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="inputForm">
+                    <label for="color">Color:</label>
+                    <input type="text" id="color" name="color" required class="input">
+                </div>
+                <div class="inputForm">
+                    <label for="size">Size:</label>
+                    <select id="size" name="size" required class="input">
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                <div class="inputForm">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" placeholder="Tell us what you want" required class="input"></textarea>
+                </div>
+                <button type="submit" class="button-submit">Create Request</button>
+            </form>
+        </div>
+
+        <h1 class="br c-head o-head" id="toggle-orders">Previous Custom Orders</h1>
+        <div class="br order-section hidden">
+            <!-- <h2>Previous Custom Orders</h2> -->
+            <% if (customOrders.length > 0) { %>
+                <ul>
+                    <% customOrders.forEach(order => { %>
+                        <li>
+                            <p>Type of Clothing: <%= order.clothingType %></p>
+                            <p>Color: <%= order.color %></p>
+                            <p>Size: <%= order.size %></p>
+                            <p>Description: <%= order.description %></p>
+                            <p>Status: <%= order.status %></p>
+                            <p>Ordered At: <%= order.createdAt.toDateString() %></p>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No previous custom orders found.</p>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        document.getElementById('toggle-orders').addEventListener('click', function() {
+            var orderSection = document.querySelector('.order-section');
+            orderSection.classList.toggle('hidden');
+        });
+    </script>
+    <%- include('footbar') %>
+</body>
+</html>

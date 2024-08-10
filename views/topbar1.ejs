@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <div class="menu-icon" id="menu-icon">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+      <div class="logoimg">
+      <a href="/" class="logo">
+        <img src="/media/LOGO/logomain.svg" alt="BrandLogo">
+      </a>
+    </div>
+      <div class="icons">
+        <% if (user) { %>
+          <div class="profile-dropdown">
+            <a class="profile-icon"><i class="fas fa-user-circle"></i></a>
+            <div class="dropdown-content">
+              <a href="/profile">My Profile</a>
+              
+              <% if (user.role === 'admin') { %>
+                <a href="/admin/add-product">Add Products</a>
+                <a href="/admin/orders">Orders</a>
+                <a href="/admin/custom-orders">Custom Order Requests</a>
+                <a href="/admin/users">Users</a>
+                <% } else if (user.role === 'user') { %>
+                  <a href="/custom-order/create-custom-order">Create Custom Order</a>
+                  
+                  <% } %>
+              <a href="#" id="logout">Logout</a>
+            </div>
+          </div>
+        <% } else { %>
+          <a href="/account"><i class="fas fa-user"></i></a>
+        <% } %>
+        <a href="<%= user ? '/cart' : '/account' %>"><i class="fas fa-shopping-bag"></i></a>
+      </div>
+    </div>
+    <div class="menu-content" id="menu-content">
+      <div class="close-icon" id="close-icon">
+        <!-- <i class="fas fa-times"></i> -->
+      </div>
+      <ul>
+        <li><a href="/shop">MENS</a></li>
+        <li><a href="/shop">WOMENS</a></li>
+        <li><a href="/shop">KIDS</a></li>
+      </ul>
+    </div>
+    <link rel="stylesheet" href="/css/topbar.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="/js/topbar.js" defer></script>
+  </header>
+</body>
+</html>

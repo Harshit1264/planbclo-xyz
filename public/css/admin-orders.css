@@ -1,0 +1,175 @@
+/* Container Styles */
+:root {
+    --primary-color: #000000;
+    --secondary-color: #4A4A4A;
+    --accent-color: #D3D3D3;
+    --background-color: #ffffffcb;
+    --text-color: #1C1C1C;
+}
+
+/* General Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    align-items: center;
+    height: 100%;
+    height: auto;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* List Styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+ul li {
+    background-color: #27272a;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #d9d9d9;
+}
+
+ul li h3 {
+    margin: 0 0 10px 0;
+}
+
+ul li p {
+    margin: 5px 0;
+}
+
+ul ul {
+    margin-top: 10px;
+}
+
+ul ul li {
+    background-color: #333;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+    color: #d9d9d9;
+}
+
+/* Form Styles */
+.update-status-form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.update-status-form label {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.update-status-form select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.update-status-form button {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.update-status-form button:hover {
+    background-color: #c0392b;
+}
+
+/* Flash Messages */
+.flash-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.flash-message.success {
+    background-color: #2ecc71;
+    color: #ffffff;
+}
+
+.flash-message.error {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
+
+/* Topbar and Footbar */
+.topbar, .footbar {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.topbar {
+    top: 0;
+}
+
+.footbar {
+    bottom: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    ul li {
+        padding: 15px;
+    }
+
+    ul ul li {
+        padding: 8px;
+    }
+
+    .update-status-form select {
+        padding: 8px;
+    }
+
+    .update-status-form button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}

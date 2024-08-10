@@ -1,0 +1,314 @@
+<head>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="25032d25-faa1-488f-898f-f91cd3b73b2e" data-blockingmode="auto" type="text/javascript"></script>
+</head>
+<link rel="stylesheet" href="/css/home.css">
+
+<!-- <div id="logo-animation">
+    <img class="logo-img" src="/media/LOGO/mainlogo1.svg" alt="Logo">
+    <div class="wave" style="animation-delay: 0s;"></div>
+    <div class="wave" style="animation-delay: 0.5s;"></div>
+    <div class="wave" style="animation-delay: 1s;"></div>
+  </div> -->
+
+<!-- <div id="main-content"> -->
+    <%- include('topbar')%>
+<div class="container animate-bottom  container-1">
+
+    
+      <!-- left image -->
+    <div class="img2">
+        <!-- <img class="img2-img" src="/media/image/webimg5.jpg"> -->
+        <img class="img2-img" src="/media/image/webimg5.jpg">
+        <!-- circle text -->
+       <div class="circle-text">
+        <div class="text circle-text1">
+            <span>Since <br> 2024</span>
+        </div>
+       </div>
+    </div>
+
+
+    <!-- middle image -->
+    <div class="img1">
+        <img class="img1-img" src="/media/image/webimg2.jpg">
+        <div class=" text img1-text1">
+            <span>CRAFTED FOR <br> CONNOISSEURS </span>
+        </div>
+        <div class="text img1-text2">
+            <span>Turn ideas into designs for your collection</span>
+        </div>
+    </div>
+
+  
+
+     <!-- right image -->
+      <div class="img3">
+        <div class="text img3-text1">
+            <span>Discover your unique</span>
+            <br>
+            <span>edge with our high-quality,</span>
+            <br>
+            <span>urban-inspired clothing</span>
+        </div>
+        <img class="img3-img" src="/media/image/webimg4.jpg" alt="Right Image">
+      </div>
+
+      
+</div>
+
+
+
+<div class="container container2">
+    <div class="c2-img1">
+        <img class="c2-img1-img" src="/media/image/webimg3.jpg">
+    </div>
+    <div class="c2-img2">
+        <img class="c2-img2-img" src="/media/image/webimg7.jpg">
+        <span class="text c2-img2-text">&nbsp;&nbsp;&nbsp;&nbsp;   The Art Of Fine Designing Is A Tradition Born Out Of Dedication To Craft And Beauty, Passed Down Through Generations..</span>
+    </div>
+    <div class="c2-img3">
+        <span class="text c2-img3-text">&nbsp;&nbsp;&nbsp;&nbsp;WE PROVIDE AN <br> UNFORGETFULL DRESSING <br> EXPERIENCE FOR YOU</span>
+        <img class="c2-img3-img" src="/media/image/webimg6.jpg">
+        <span class="text c2-img3-text2">( NEW COLLECTION )</span>
+
+    </div>
+</div>
+
+<div class="container container-3">
+    <div class="brand-name">
+        <span class="text brand-name-text p">P</span>
+        <span class="text brand-name-text l">L</span>
+        <span class="text brand-name-text a">A</span>
+        <span class="text brand-name-text n">N</span>
+        <span class="text brand-name-text b">B</span>
+        <span class="text brand-name-text c">C</span>
+        <span class="text brand-name-text l2">L</span>
+        <span class="text brand-name-text o">O</span>
+    </div>
+    <div class="prod-head-ss">
+        <span>BEST SELLERS</span>
+    </div>
+    <div class="product-slider">
+
+    <div class="product-container">
+        <% products.forEach(product => { %>
+            <div class="product">
+                <img src="<%= product.imageUrls[0] %>" alt="<%= product.name %>">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h3 class="product-name"><%= product.name %></h3>
+                        <div class="price-info">
+                            <span class="max-price">Rs.<%= (product.price * 130) / 100 %></span>
+                            <span class="price">Rs.<%= product.price %></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+    <div class="c3-images">
+        <div class="c3-img1">
+            <img src="/media/image/1.jpg" alt="nothing" />
+        </div>
+        <div class="c3-img2">
+            <img src="/media/image/2.jpg" alt="yo">
+        </div>
+        <div class="c3-img3">
+            <img src="/media/image/4.jpg" alt="yo">
+        </div>
+        <div class="c3-img4">
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<%- include('footbar') %>
+<!-- </div> -->
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(() => {
+    document.getElementById('logo-animation').style.display = 'none';
+    const mainContent = document.getElementById('main-content');
+    mainContent.style.display = 'block';
+    mainContent.style.opacity = 1;
+  }, 5000); 
+});
+
+</script> -->
+<script>
+
+
+// home.js
+document.addEventListener('DOMContentLoaded', function() {
+    const productContainer = document.querySelector('.product-container');
+    const products = document.querySelectorAll('.product');
+
+    function updateActiveProduct() {
+        let center = productContainer.offsetWidth / 2;
+        let closest = null;
+        let closestDistance = Infinity;
+
+        products.forEach(product => {
+            let productCenter = product.getBoundingClientRect().left + product.offsetWidth / 2;
+            let distance = Math.abs(center - productCenter);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closest = product;
+            }
+        });
+
+        products.forEach(product => product.classList.remove('active'));
+        if (closest) closest.classList.add('active');
+    }
+
+    productContainer.addEventListener('scroll', updateActiveProduct);
+
+    products.forEach(product => {
+        product.addEventListener('click', () => {
+            products.forEach(p => p.classList.remove('active'));
+            product.classList.add('active');
+
+            const centerIndex = Array.from(products).indexOf(product);
+            const offset = productContainer.offsetWidth / 2 - product.offsetWidth / 2;
+            const scrollPosition = product.offsetLeft - offset;
+
+            productContainer.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+
+            if (product.classList.contains('active')) {
+                window.location.href = '/shop';
+            }
+        });
+    });
+
+    // Initial active product
+    updateActiveProduct();
+});
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     const productContainer = document.querySelector('.product-container');
+//     const productSlider = document.querySelector('.product-slider');
+//     const products = document.querySelectorAll('.product');
+//     let currentIndex = 1; // Start from 1 to account for the prepended last product clone
+//     const intervalTime = 5000; // Time interval in milliseconds
+
+//     // Clone first and last products
+//     const firstProductClone = products[0].cloneNode(true);
+//     const lastProductClone = products[products.length - 1].cloneNode(true);
+//     productContainer.appendChild(firstProductClone);
+//     productContainer.insertBefore(lastProductClone, products[0]);
+
+//     const allProducts = document.querySelectorAll('.product');
+
+//     function updateActiveProduct(index) {
+//         allProducts.forEach(product => product.classList.remove('active'));
+//         allProducts[index].classList.add('active');
+
+//         const sliderWidth = productSlider.offsetWidth;
+//         const productWidth = allProducts[index].offsetWidth;
+//         const offset = (sliderWidth / 2) - (productWidth / 2);
+//         const scrollPosition = allProducts[index].offsetLeft - productContainer.offsetLeft - offset;
+
+//         productContainer.style.transition = 'transform 0.5s ease';
+//         productContainer.style.transform = `translateX(-${scrollPosition}px)`;
+//     }
+
+//     function nextProduct() {
+//         currentIndex++;
+//         if (currentIndex >= allProducts.length - 1) {
+//             currentIndex = 1;
+//             productContainer.style.transition = 'none'; // Disable transition
+//             const sliderWidth = productSlider.offsetWidth;
+//             const productWidth = allProducts[currentIndex].offsetWidth;
+//             const offset = (sliderWidth / 2) - (productWidth / 2);
+//             const scrollPosition = allProducts[currentIndex].offsetLeft - productContainer.offsetLeft - offset;
+//             productContainer.style.transform = `translateX(-${scrollPosition}px)`;
+//             setTimeout(() => {
+//                 productContainer.style.transition = 'transform 0.5s ease'; // Re-enable transition
+//                 updateActiveProduct(currentIndex);
+//             }, 50); // Small delay to apply changes
+//         } else {
+//             updateActiveProduct(currentIndex);
+//         }
+//     }
+
+//     function prevProduct() {
+//         currentIndex--;
+//         if (currentIndex <= 0) {
+//             currentIndex = allProducts.length - 2;
+//             productContainer.style.transition = 'none'; // Disable transition
+//             const sliderWidth = productSlider.offsetWidth;
+//             const productWidth = allProducts[currentIndex].offsetWidth;
+//             const offset = (sliderWidth / 2) - (productWidth / 2);
+//             const scrollPosition = allProducts[currentIndex].offsetLeft - productContainer.offsetLeft - offset;
+//             productContainer.style.transform = `translateX(-${scrollPosition}px)`;
+//             setTimeout(() => {
+//                 productContainer.style.transition = 'transform 0.5s ease'; // Re-enable transition
+//                 updateActiveProduct(currentIndex);
+//             }, 50); // Small delay to apply changes
+//         } else {
+//             updateActiveProduct(currentIndex);
+//         }
+//     }
+
+//     allProducts.forEach(product => {
+//         product.addEventListener('click', () => {
+//             if (product.classList.contains('active')) {
+//                 window.location.href = '/shop';
+//             } else {
+//                 currentIndex = Array.from(allProducts).indexOf(product);
+//                 updateActiveProduct(currentIndex);
+//             }
+//         });
+//     });
+
+//     // Initial active product
+//     updateActiveProduct(currentIndex);
+
+//     // Set interval to automatically change active product
+//     setInterval(nextProduct, intervalTime);
+// });
+    
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const products = document.querySelectorAll('.product');
+    //     let activeIndex = 0;
+
+    //     const setActiveProduct = (index) => {
+    //         products.forEach((product, i) => {
+    //             product.classList.toggle('active', i === index);
+    //         });
+
+    //         // Move the active product to the center
+    //         const container = document.querySelector('.product-container');
+    //         const containerWidth = container.clientWidth;
+    //         const productWidth = products[0].clientWidth;
+    //         const centerPosition = (containerWidth - productWidth) / 2;
+    //         const offset = index * productWidth;
+    //         container.style.transform = `translateX(${centerPosition - offset}px)`;
+    //     };
+
+    //     const handleProductClick = (index) => {
+    //         activeIndex = index;
+    //         setActiveProduct(activeIndex);
+    //     };
+
+    //     products.forEach((product, index) => {
+    //         product.addEventListener('click', () => handleProductClick(index));
+    //     });
+
+    //     setActiveProduct(activeIndex);
+    // });
+
+    
+    </script>

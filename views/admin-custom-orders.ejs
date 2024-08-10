@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/admin-custom-orders.css">
+</head>
+<body>
+    <%- include('topbar') %>
+    <div class="container">
+        <h1>Admin - Custom Orders</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Clothing Type</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% customOrders.forEach(order => { %>
+                    <tr>
+                        <td><%= order.user %></td>
+                        <td><%= order.clothingType %></td>
+                        <td><%= order.color %></td>
+                        <td><%= order.size %></td>
+                        <td><%= order.description %></td>
+                        <td>
+                            <form action="/admin/custom-orders/update/<%= order._id %>" method="POST">
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                    <option value="Shipped" <%= order.status === 'Shipped' ? 'selected' : '' %>>Shipped</option>
+                                    <option value="Delivered" <%= order.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                                    <option value="Cancelled" <%= order.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td><%= new Date(order.createdAt).toLocaleString() %></td>
+                        <td>
+                            <form action="/admin/custom-orders/delete/<%= order._id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('footbar') %>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="icon" href="/media/LOGO/ico1.jpg" type="image/jpeg">
+  <link rel="icon" href="/media/LOGO/mainlogo1.ico" type="image/x-icon"> <!-- ICO format for older browsers -->
+  <link rel="icon" href="/media/LOGO/ico1.jpg" type="image/jpeg"> 
+  <title>
+    PLANBCLO
+  </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/topbar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Grandiflora+One&family=Gupter:wght@400;500;700&family=Honk&family=Kalnia+Glaze&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /> -->
+</head>
+<body>
+    <header>
+        <div class="header hidden animate-upper desktop-header">
+
+            <!-- logo -->
+            <div class="logo">
+                <img class="logo-img" src="/media/LOGO/mainlogo1.svg" alt="Logo">
+            </div>
+
+            <!-- menu -->
+            <div class="topbar-menu">
+                <div class="menu-items menu-item-1">
+                    <a href="/">Home</a>
+                </div>
+                <% if (user && user.role === 'admin') { %>
+                <div class="menu-items menu-item-admin">
+                    <a href="#">Admin</a>
+                    <div class="dropdown-content">
+                
+                    <div class="menu-items dropdown-item"><a href="/admin/add-product">Add Products</a></div>
+                    <div class="menu-items dropdown-item"><a href="/admin/orders">Orders</a></div>
+                    <div class="menu-items dropdown-item"><a href="/admin/custom-orders">Custom Order Requests</a></div>
+                    <div class="menu-items dropdown-item"><a href="/admin/users">Users</a></div>
+                 
+                    </div>
+                </div>
+                <% }  %>
+
+                <div class="menu-items menu-item-2">
+                    <a href="#footer">About</a>
+                </div>
+                 
+                <div class="menu-items menu-item-4">
+                    <a href="/shop">Store</a>
+                </div>
+                
+            
+            </div>
+
+            <!-- icons -->
+             <div class="menu-icons">
+
+                <% if (user) { %>
+                <div class="icons user-ic icon1" data-tooltip="Account">
+                    <a href="javascript:void(0)" onclick="toggleIcons()">
+                        <span class="material-symbols-outlined">
+                                person
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="icons user-icons user-icon1" data-tooltip="Profile">
+                    <a href="/profile">
+                        <span class="material-symbols-outlined">
+                            account_circle
+                        </span>
+                    </a>
+                </div>
+                <div class="icons user-icons user-icon2" data-tooltip="cart">
+                    <a href="/cart">
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+                    </a>
+                </div>
+                <div class="icons user-icons user-icon3" data-tooltip="Logout">
+                    <a href="#" id="logout">
+                        <span class="material-symbols-outlined">
+                            logout
+                        </span>
+                    </a>
+                </div>
+
+
+                <% } else { %>
+                  
+                <div class="icons icon1" data-tooltip="Login">
+                    <a href="/account">
+                        <span class="material-symbols-outlined">
+                            person
+                        </span>
+                    </a>
+                </div>
+                <% } %>
+
+            <span class="hide-icons">
+                <div class="icons icon2" data-tooltip="Mail">
+                    <a href="mailto:planbclo.2024@gmail.com" target="_blank">
+                        <span class="material-symbols-outlined">
+                            mail
+                        </span>
+                    </a>
+                </div>
+                <div class="icons icon3 icon-insta" data-tooltip="Instagram">
+                    <a href="https://www.instagram.com/planb_clo?igsh=MTJmZ2ZmaGc5cGk1dQ%3D%3D&utm_source=qr" target="_blank" >
+                        <svg viewBox="0 0 600 600" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="M251.921.159c-68.418 0-76.997.29-103.867 1.516-26.814 1.224-45.127 5.482-61.152 11.71-16.566 6.438-30.615 15.052-44.62 29.057-14.005 14.005-22.619 28.054-29.057 44.62-6.228 16.024-10.486 34.337-11.71 61.151C.289 175.083 0 183.662 0 252.08c0 68.417.289 76.996 1.515 103.866 1.224 26.814 5.482 45.127 11.71 61.151 6.438 16.566 15.052 30.615 29.057 44.621 14.005 14.005 28.054 22.619 44.62 29.057 16.025 6.227 34.338 10.486 61.152 11.709 26.87 1.226 35.449 1.516 103.867 1.516 68.417 0 76.996-.29 103.866-1.516 26.814-1.223 45.127-5.482 61.151-11.709 16.566-6.438 30.615-15.052 44.621-29.057 14.005-14.006 22.619-28.055 29.057-44.621 6.227-16.024 10.486-34.337 11.709-61.151 1.226-26.87 1.516-35.449 1.516-103.866 0-68.418-.29-76.997-1.516-103.867-1.223-26.814-5.482-45.127-11.709-61.151-6.438-16.566-15.052-30.615-29.057-44.62-14.006-14.005-28.055-22.619-44.621-29.057-16.024-6.228-34.337-10.486-61.151-11.71C328.917.449 320.338.159 251.921.159Zm0 45.392c67.265 0 75.233.256 101.797 1.468 24.562 1.121 37.901 5.225 46.778 8.674 11.759 4.57 20.151 10.03 28.966 18.845 8.816 8.815 14.275 17.208 18.845 28.966 3.45 8.877 7.554 22.216 8.674 46.778 1.212 26.564 1.469 34.532 1.469 101.798 0 67.265-.257 75.233-1.469 101.797-1.12 24.562-5.224 37.901-8.674 46.778-4.57 11.759-10.029 20.151-18.845 28.966-8.815 8.816-17.207 14.275-28.966 18.845-8.877 3.45-22.216 7.554-46.778 8.674-26.56 1.212-34.527 1.469-101.797 1.469-67.271 0-75.237-.257-101.798-1.469-24.562-1.12-37.901-5.224-46.778-8.674-11.759-4.57-20.151-10.029-28.967-18.845-8.815-8.815-14.275-17.207-18.844-28.966-3.45-8.877-7.554-22.216-8.675-46.778-1.212-26.564-1.468-34.532-1.468-101.797 0-67.266.256-75.234 1.468-101.798 1.121-24.562 5.225-37.901 8.675-46.778 4.569-11.758 10.029-20.151 18.844-28.966 8.816-8.815 17.208-14.275 28.967-18.845 8.877-3.449 22.216-7.553 46.778-8.674 26.564-1.212 34.532-1.468 101.798-1.468Z" transform="translate(44 43.838) scale(1.01619)" fill-rule="nonzero" fill="#ffffff" class="fill-000000"></path><path d="M251.921 336.053c-46.378 0-83.974-37.596-83.974-83.973 0-46.378 37.596-83.974 83.974-83.974 46.377 0 83.973 37.596 83.973 83.974 0 46.377-37.596 83.973-83.973 83.973Zm0-213.338c-71.447 0-129.365 57.918-129.365 129.365 0 71.446 57.918 129.364 129.365 129.364 71.446 0 129.364-57.918 129.364-129.364 0-71.447-57.918-129.365-129.364-129.365ZM416.627 117.604c0 16.696-13.535 30.23-30.231 30.23-16.695 0-30.23-13.534-30.23-30.23 0-16.696 13.535-30.23 30.23-30.23 16.696 0 30.231 13.534 30.231 30.23Z" transform="translate(44 43.838) scale(1.01619)" fill="#ffffff" fill-rule="nonzero" class="fill-030404"></path></svg>
+                    </a>
+                </div>
+                <div class="icons icon4 " data-tooltip="Facebook">
+                    <a href="https://www.facebook.com/profile.php?id=61563241165986" target="_blank" >
+                        <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="m374.244 285.825 14.105-91.961h-88.233v-59.677c0-25.159 12.325-49.682 51.845-49.682h40.116V6.214S355.67 0 320.864 0c-72.67 0-120.165 44.042-120.165 123.775v70.089h-80.777v91.961h80.777v222.31A320.565 320.565 0 0 0 250.408 512c16.911 0 33.511-1.324 49.708-3.865v-222.31h74.128Z" fill-rule="nonzero" fill="#ffffff" class="fill-000000"></path></svg>
+                    </a>
+                </div>
+                <div class="icons icon5" data-tooltip="Whatsapp">
+                    <a href="https://wa.me/917901903473" target="_blank" >
+                        <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="M373.295 307.064c-6.37-3.188-37.687-18.596-43.526-20.724-5.838-2.126-10.084-3.187-14.331 3.188-4.246 6.376-16.454 20.725-20.17 24.976-3.715 4.251-7.431 4.785-13.8 1.594-6.37-3.187-26.895-9.913-51.225-31.616-18.935-16.89-31.72-37.749-35.435-44.126-3.716-6.377-.397-9.824 2.792-13 2.867-2.854 6.371-7.44 9.555-11.16 3.186-3.718 4.247-6.377 6.37-10.626 2.123-4.252 1.062-7.971-.532-11.159-1.591-3.188-14.33-34.542-19.638-47.298-5.171-12.419-10.422-10.737-14.332-10.934-3.711-.184-7.963-.223-12.208-.223-4.246 0-11.148 1.594-16.987 7.969-5.838 6.377-22.293 21.789-22.293 53.14 0 31.355 22.824 61.642 26.009 65.894 3.185 4.252 44.916 68.59 108.816 96.181 15.196 6.564 27.062 10.483 36.312 13.418 15.259 4.849 29.145 4.165 40.121 2.524 12.238-1.827 37.686-15.408 42.995-30.286 5.307-14.882 5.307-27.635 3.715-30.292-1.592-2.657-5.838-4.251-12.208-7.44M257.071 465.757h-.086c-38.022-.015-75.313-10.23-107.845-29.535l-7.738-4.592-80.194 21.037 21.405-78.19-5.037-8.017c-21.211-33.735-32.414-72.726-32.397-112.763.047-116.825 95.1-211.87 211.976-211.87 56.595.019 109.795 22.088 149.801 62.139 40.005 40.05 62.023 93.286 62.001 149.902-.048 116.834-95.1 211.889-211.886 211.889M437.403 73.533C389.272 25.347 325.265-1.202 257.068-1.23 116.554-1.23 2.193 113.124 2.136 253.681c-.018 44.932 11.72 88.786 34.03 127.448L0 513.231l135.141-35.45c37.236 20.31 79.159 31.015 121.826 31.029h.105c140.499 0 254.87-114.366 254.928-254.925.026-68.117-26.467-132.166-74.597-180.352" fill="#ffffff" class="fill-000000"></path></svg>
+                    </a>
+                </div>
+            </span>
+             </div> 
+            
+        </div>
+        <script>
+            function toggleIcons() {
+                const icons = document.querySelectorAll('.user-icons');
+                icons.forEach(icon => {
+                    icon.classList.toggle('show');
+                });
+            }
+            const logoutButton = document.getElementById('logout');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', logout);
+    }
+
+    async function logout(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        console.log("btn clicked");
+        const response = await fetch('/auth/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            Cookies.remove('token', { path: '/' }); // Ensure the path is specified
+            window.location.href = '/'; // Redirect to home page after removing the token
+        } else {
+            alert('Failed to log out');
+        }
+    }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+        <script src="/js/topbar.js" defer></script>
+    </header>

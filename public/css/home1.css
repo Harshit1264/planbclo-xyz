@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+BE+VLG:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Honk&family=Kalnia+Glaze:wght@100..700&display=swap');
+@font-face {
+    font-family: 'chromiumone';
+    src: url('public/Fonts/chromium.otf') format('opentype');
+}
+:root {
+    --primary-color: #000000;
+    --secondary-color: #4A4A4A;
+    --accent-color: #D3D3D3;
+    --background-color: #FFFFFF;
+    --text-color: #1C1C1C;
+    --pinkipinkibg: rgb(231, 207, 216);
+    --pinkichck: #FEDCBB;
+    --last-bgcolor: #252727b8;
+    --last-tpbar: #efe9df;
+}
+
+
+html,body{
+    background-color: var(--last-bgcolor);
+    margin: 0;
+    display: block;
+    
+}
+
+
+
+/* sale-banner-css */
+#sale-banner-container {
+    width: 100%;
+    overflow: hidden; /* Hide the overflow to create a seamless scrolling effect */
+    background-color: var(--last-tpbar); /* Background color of the banner */
+    white-space: nowrap; /* Prevent text from wrapping */
+    position: relative; /* Position relative to position the text absolutely */
+    display: flex;
+    align-items: center;
+    
+    /* font-family: 'Kalnia Glaze', Arial, Helvetica, sans-serif; */
+    border: #000 2px solid;
+    
+}
+
+.sale-banner-text-wrapper {
+    display: flex; 
+    position: relative;
+    top: 0;
+    /* left: 100%;  */
+    animation: scrollBanner 20s linear infinite;
+}
+
+.sale-banner-text {
+    display: inline-block;
+    padding: 0px 90px; /* Add padding to create space between the items */
+    color: black; /* Text color */
+    font-size: 20px; /* Font size */
+    white-space: nowrap; /* Prevent text from wrapping */
+    margin: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    /* text-shadow: #000000; */
+    /* text-shadow: 
+        0 0 5px #1a1918, 
+        0 0 10px #2a2a29, 
+        0 0 15px #8b8b86, 
+        0 0 20px #2c2b2a, 
+        0 0 30px #262523, 
+        0 0 40px #393a34, 
+        0 0 50px #464644, 
+        0 0 75px #5b5b59; */
+
+}
+@keyframes scrollBanner {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* media-css */
+/* media-css */
+.media-loop-container, .mobile-media-loop-container {
+    position: relative; /* Changed from absolute to relative */
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+}
+.mobile-media-loop-container{
+    height: 60vh;
+}
+.media-item, .mobile-media-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.media-item img, .media-item video, .mobile-media-item img, .mobile-media-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    color: white;
+    font-size: 40px;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-family: monospace;
+    max-width: 30%;
+}
+.overlay-text p{
+    margin: 0;
+}
+.ssbtn{
+    color: #D3D3D3;
+    border: 1px solid #D3D3D3 ;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 24px;
+    
+
+}
+
+/* Ensure small-para is correctly positioned */
+.small-para {
+    position: relative; /* Ensure it's positioned relatively to other elements */
+    /* margin-top: 20px; Add some margin to space it from the media container */
+    /* text-align: center; Center the text */
+    /* display: inline; */
+    /* justify-content: center; */
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    border: #000 1px solid;
+    font-family:  'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.small-para-text{
+    font-size: 20px;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-align: center;
+    display: inline;
+    justify-content: space-evenly;
+    text-transform: uppercase;
+
+    /* padding: 20px 80px; */
+    
+
+}
+
+.exclusive-banner {
+    width: 100%;
+    
+}
+.exclusive-banner img{
+    object-fit: cover;
+    width: 100%;
+}
+ 
+
+.posters-add{
+    width: 100%;
+    /* height: auto; */
+    /* padding: 100px 100px; */
+    /* display: flex; */
+    /* justify-content: center; */
+    justify-content: space-evenly;
+    
+}
+.posters-add-1{
+    width: 50vh;
+    height: 60vh;
+    border: #000 2px solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-image: url(/media/image/poster1.svg);
+    background-size: cover;
+    
+}
+.posters-add-2{
+    width: 50vh;
+    height: 60vh;
+    border: #000 2px solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-image: url(/media/image/poster2.svg);
+    background-size: cover;
+}
+.posters-add-1,.posters-add-2{
+    border-radius: 15px;
+    /* min-width: 20vh; */
+    /* min-width: 10vh; */
+}
+@media (max-width: 768px) {
+    .posters-add{
+        justify-content: space-evenly;
+      display: grid; /* Visible only on mobile */
+    }
+    .posters-add-1,.posters-add-2{
+        border-radius: 15px;
+        width: 40vh;
+        height: 40vh;
+        /* min-width: 20vh; */
+        /* min-width: 10vh; */
+    }
+    .small-para-text{
+        font-size: 14px;
+    }
+    .media-loop-container{
+        display: none;
+    }
+   
+   
+  }
+  
+  @media (min-width: 769px) {
+    .posters-add {
+        justify-content: space-evenly;
+      display: flex;
+    }
+    .mobile-media-loop-container{
+        display: none;
+    }
+   
+  }
+

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/cart.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <%- include('topbar') %>
+    <div class="br container">
+        <!-- Flash messages -->
+        <% if (success_msg) { %>
+            <div class="flash-message success"><%= success_msg %></div>
+        <% } %>
+        <% if (error_msg) { %>
+            <div class="flash-message error"><%= error_msg %></div>
+        <% } %>
+
+        <!-- <h1 class="br">Your Cart</h1> -->
+        <% if (cart && cart.length > 0) { %>
+            <ul class="cart-list">
+                <% cart.forEach(item => { %>
+                    <% if (item.product) { %>
+                        <li class="cart-item">
+                            <div class="cart-item-left">
+                                <% if (item.product.imageUrls && item.product.imageUrls.length > 0) { %>
+                                    <img src="<%= item.product.imageUrls[0] %>" alt="<%= item.product.name %>" class="product-image">
+                                <% } else { %>
+                                    <img src="/path/to/default-image.jpg" alt="Default Image" class="product-image">
+                                <% } %>
+                            </div>
+                            <div class="cart-item-middle">
+                                <h2><%= item.product.name %></h2>
+                                <p>By <%= item.product.brand %></p>
+                                <p class="phd1">Size:<span class="number"> <%= item.size %></span></p>
+                                <p class="phd2">Color:<span class="number"> <%= item.color %></span></p>
+                            </div>
+                            <div class="cart-item-right">
+                                <p class="quantity">Quantity: <span class="number"><%= item.quantity %></span></p>
+                                <p class="quantity">Price:<span class="number"> <%= item.product.price %></span></p>
+                                <div class="inc-dec-bttn">
+                                <form action="/cart/increase" method="POST" style="display:inline;">
+                                    <input type="hidden" name="productId" value="<%= item.product._id %>">
+                                    <button type="submit" class="cart-action">+</button>
+                                </form>
+                                <form action="/cart/decrease" method="POST" style="display:inline;">
+                                    <input type="hidden" name="productId" value="<%= item.product._id %>">
+                                    <button type="submit" class="cart-action">-</button>
+                                </form>
+                            </div>
+                                <form action="/cart/remove" method="POST" style="display:inline;">
+                                    <input type="hidden" name="productId" value="<%= item.product._id %>">
+                                    <button type="submit" class="cart-action">Remove</button>
+                                </form>
+                            
+                            </div>
+                        </li>
+                    <% } else { %>
+                        <li class="cart-item">
+                            <p>Product information is not available.</p>
+                        </li>
+                    <% } %>
+                <% }) %>
+            </ul>
+            <div class="cart-summary">
+                <h3>Subtotal: ₹<%= subtotal.toFixed(2) %></h3>
+                <button id="checkout-button" class="checkout-button">Checkout Now</button>
+                <form action="/cart/clear" method="POST" style="display:inline;">
+                    <button type="submit" class="clear-cart-button">Clear Cart</button>
+                </form>
+            </div>
+        <% } else { %>
+            <p>Your cart is empty.</p>
+        <% } %>
+    </div>
+
+    <!-- Checkout Summary Popup -->
+    <div id="checkout-summary-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close" id="close-popup">&times;</span>
+            <div class="popup-container">
+                <div class="card cart">
+                    <label class="title">CHECKOUT</label>
+                    <hr>
+                    <div class="steps">
+                        <div class="step">
+                            <div>
+                                <span>SHIPPING</span>
+                                <p id="shipping-address"><%= user.address1 %>, <%= user.pincode %></p>
+                                <p><%= user.city %>, <%= user.state %>, <%= user.country %></p>
+                            </div>
+                            <hr>
+                            <div>
+                                <span>PAYMENT METHOD</span>
+                                <p>Online Payment</p>
+                            </div>
+                            <hr>
+                            <div class="promo">
+                                <span>HAVE A PROMO CODE?</span>
+                                <form class="form" id="promo-form">
+                                    <input id="promo-code" class="input_field" placeholder="Enter a Promo Code" type="text">
+                                    <button type="submit">Apply</button>
+                                </form>
+                            </div>
+                            <hr>
+                            <div class="payments">
+                                <span>PAYMENT</span>
+                                <div class="details">
+                                    <span>Subtotal:</span>
+                                    <span><span id="subtotal-amount">₹<%= subtotal.toFixed(2) %></span></span>
+                                    <span>Shipping:</span>
+                                    <span>₹70.00</span>
+                                    <span>Tax:</span>
+                                    <span><span id="tax-amount">₹<%= (subtotal * 0.18).toFixed(2) %></span></span>
+                                    <span class="details" id="discount-row" style="display:none;">
+                                        <span>Discount:</span>
+                                        <span id="discount-amount">₹0.00</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card checkout">
+                    <div class="footer">
+                        <label class="price">Rs: <span id="total-amount"><%= (subtotal + 70 + (subtotal * 0.18)).toFixed(2) %></span></label>
+                        <button id="popup-checkout-button" class="checkout-btn">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/cart.js"></script>
+    <script>
+        document.getElementById('checkout-button').onclick = function (e) {
+            e.preventDefault();
+            document.getElementById('checkout-summary-popup').style.display = 'block';
+        };
+
+        document.getElementById('close-popup').onclick = function () {
+            document.getElementById('checkout-summary-popup').style.display = 'none';
+        };
+
+        window.onclick = function (event) {
+            if (event.target === document.getElementById('checkout-summary-popup')) {
+                document.getElementById('checkout-summary-popup').style.display = 'none';
+            }
+        };
+
+        document.getElementById('popup-checkout-button').onclick = async function (e) {
+    e.preventDefault();
+
+    const totalAmountText = document.getElementById('total-amount').innerText;
+    const totalAmount = parseFloat(totalAmountText.replace('₹', ''));
+    console.log(totalAmountText , totalAmount);
+
+    const { orderId, amount, currency } = await fetch('/checkout/create-order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${Cookies.get('token')}`
+        },
+        body: JSON.stringify({ amount: totalAmount })
+    }).then(r => r.json());
+
+    const options = {
+        key: '<%= process.env.RAZORPAY_KEY_ID %>', // Use your Razorpay Key ID
+        amount: totalAmount , // Razorpay amount is in paise, so multiply by 100
+        currency: currency,
+        name: 'PLAN B CLO',
+        description: 'Transaction',
+        image: '/media/LOGO/mainlogo1.svg',
+        order_id: orderId,
+        handler: async function (response) {
+            // Handle payment success
+            try {
+                const result = await fetch('/checkout/success', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${Cookies.get('token')}`
+                    },
+                    body: JSON.stringify({
+                        razorpay_payment_id: response.razorpay_payment_id,
+                        razorpay_order_id: response.razorpay_order_id,
+                        razorpay_signature: response.razorpay_signature
+                    })
+                });
+
+                if (result.ok) {
+                    alert('Payment successful and order placed!');
+                    window.location.href = '/profile'; // Redirect to profile/orders page
+                } else {
+                    alert('Payment successful, but failed to place order. Please contact support.');
+                }
+            } catch (error) {
+                alert('Payment successful, but an error occurred while placing the order. Please contact support.');
+            }
+        },
+        prefill: {
+            name: '<%= user ? user.firstname + " " + user.lastname : "" %>',
+            email: '<%= user ? user.email : "" %>',
+            contact: '<%= user ? user.mobile : "" %>',
+        },
+        theme: {
+            color: '#F37254'
+        }
+    };
+
+    const rzp1 = new Razorpay(options);
+    rzp1.open();
+};
+
+
+        // Promo code functionality
+        document.getElementById('promo-form').onsubmit = async function (e) {
+    e.preventDefault();
+    const promoCode = document.getElementById('promo-code').value;
+
+    console.log('Promo code entered:', promoCode); // Log the entered promo code
+
+    try {
+        const response = await fetch('/checkout/apply-promo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Cookies.get('token')}`
+            },
+            body: JSON.stringify({ promoCode })
+        });
+
+        const data = await response.json();
+        console.log('Server response:', data); // Log the server response
+
+        if (response.ok) {
+            const discount = data.discount;
+
+            document.getElementById('discount-row').style.display = 'flex';
+            document.getElementById('discount-amount').innerText = `₹${discount.toFixed(2)}`;
+            
+            // Remove non-numeric characters (like ₹) from the text content before parsing
+            const subtotal = parseFloat(document.getElementById('subtotal-amount').innerText.replace(/[^\d.-]/g, ''));
+            const tax = parseFloat(document.getElementById('tax-amount').innerText.replace(/[^\d.-]/g, ''));
+            
+            const total = subtotal + 70 + tax - discount;
+            console.log("Total:", total);
+
+            document.getElementById('total-amount').innerText = `${total.toFixed(2)}`;
+        } else {
+            alert('Invalid promo code');
+        }
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+        console.error('Error:', error);
+    }
+};
+ </script>
+
+    <%- include('footbar') %>
+</body>
+</html>

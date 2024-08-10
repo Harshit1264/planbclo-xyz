@@ -1,0 +1,204 @@
+/* Topbar Styles */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+BE+VLG:wght@100..400&display=swap');
+:root {
+  --primary-color: #000000;
+  --secondary-color: #4A4A4A;
+  --accent-color: #D3D3D3;
+  --background-color: #FFFFFF;
+  --text-color: #1C1C1C;
+  --white-text: #ffffffd2;
+  --bg-card: #27272a;
+--primary: #252323;
+--primary-800: #4c1d95;
+--primary-shadow: #2e1065;
+--light: #aeabab;
+--dark: #ac5353c9;
+--zinc-800: #18181b;
+--bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
+--pinkipinkibg: rgb(231, 207, 216);
+    --pinkichck: #FEDCBB;
+    --topbar-bg: #fcfff4;
+    --last-bgcolor: #252727b8;
+    --last-tpbar: #efe9df;
+}
+html,body{
+  background-color: var(--primary-color);
+  margin: 0px;
+  display: block;
+  overscroll-behavior: none;
+  height: 100%;
+  overflow: auto;
+  /* padding: 10px; */
+}
+body{
+  padding: 10px;
+}
+
+:root{
+  --topbar-height: 
+}
+.topbar {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  font-family: 'Playwrite BE VLG';
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  height: 50px;
+  z-index: 3;
+  border-radius: 0 0 10px 10px;
+
+}
+
+.logo {
+  position: relative;
+  /* height: fit-content; */
+}
+
+.logo img {
+  height: 20vh;
+  margin-top: 10px;
+}
+
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-icon {
+  font-size: 24px;
+  color: var(--background-color);
+  text-decoration: none;
+  margin-right: 10px;
+  display: block; /* Always display */
+  padding-left: 20px;
+}
+
+.icons a {
+  font-size: 24px;
+  color: black;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.menu-desktop {
+  display: none; /* Always hide desktop menu */
+}
+
+.menu-content {
+  position: absolute;
+  top: 80px;
+  left: -100%;
+  width: auto;
+  height: auto;
+  background-color: var(--bg-card);
+  transition: right 0.3s ease;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Playwrite BE VLG'
+}
+
+.menu-content .close-icon {
+  align-self: flex-end;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--background-color);
+}
+
+.menu-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.menu-content ul li {
+  margin: 20px 0;
+  font-family: 'Playwrite BE VLG'
+}
+
+.menu-content ul li a {
+  text-decoration: none;
+  font-size: 1.2ch;
+  color: var(--text-color);
+  transition: text-shadow 1.5s;
+  display: block;
+  font-family: 'Playwrite BE VLG'
+}
+
+.menu-content ul li a:hover {
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(0, 0, 0), 0 0 15px rgb(0, 0, 0);
+}
+
+.menu-content.active {
+  left: 0;
+}
+
+.profile-dropdown {
+  position: relative;
+}
+
+.profile-dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--last-tpbar);
+  color: black;
+  width: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 20px;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  /* font-size: 1px; */
+  font-family: 'Playwrite BE VLG';
+  font-display: initial;
+  min-width: 200px;
+  background-color: var(--last-tpbar);
+  border-radius: 10px;
+  text-transform: capitalize;
+  
+}
+
+.profile-dropdown .dropdown-content a {
+  color: var(--text-color);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  transition: text-shadow 1.5s;
+  font-size: 1.2ch;
+  
+}
+
+.profile-dropdown .dropdown-content a:hover {
+  
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(0, 0, 0), 0 0 15px rgb(11, 10, 10);
+}
+.profile-dropdown .dropdown-content a:hover::after {
+  
+  text-shadow: 0 0 10px rgb(5, 5, 5), 0 0 5px rgb(10, 9, 9), 0 0 1px rgb(6, 5, 5);
+}
+.profile-dropdown .dropdown-content.active {
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .menu-mobile {
+    display: none;
+  }
+ 
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/admin-orders.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <%- include('topbar') %>
+    <div class="container">
+        <h1>All Orders</h1>
+        <% if (orders.length > 0) { %>
+            <ul>
+                <% orders.forEach(order => { %>
+                    <li>
+                        <% if (order.user) { %>
+                            <h3>User: <%= order.user.firstname %> <%= order.user.lastname %></h3>
+                        <% } else { %>
+                            <h3>User: Unknown</h3>
+                        <% } %>
+                        <p>Order Date: <%= order.orderDate ? order.orderDate.toDateString() : 'Unknown' %></p>
+                        <p>Total: $<%= order.total %></p>
+                        <ul>
+                            <% if (order.products && order.products.length > 0) { %>
+                                <% order.products.forEach(item => { %>
+                                    <li><%= item.product.name %> - $<%= item.product.price %> - Quantity: <%= item.quantity %></li>
+                                <% }) %>
+                            <% } else { %>
+                                <li>No items found</li>
+                            <% } %>
+                        </ul>
+                        <form action="/order/update-status/<%= order._id %>" method="POST" class="update-status-form">
+                            <label for="status-<%= order._id %>">Status:</label>
+                            <select name="status" id="status-<%= order._id %>">
+                                <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                <option value="Shipped" <%= order.status === 'Shipped' ? 'selected' : '' %>>Shipped</option>
+                                <option value="Delivered" <%= order.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                                <option value="Cancelled" <%= order.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                            </select>
+                            <button type="submit">Update Status</button>
+                        </form>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No orders found.</p>
+        <% } %>
+    </div>
+    <%- include('footbar') %>
+</body>
+</html>

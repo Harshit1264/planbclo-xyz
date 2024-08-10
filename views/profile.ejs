@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <%- include('topbar') %>
+    <div class="container">
+        <div class="br sidebar">
+            <ul>
+                <li><a href="#profile" class="sidebar-link" data-section="profile-section">Profile</a></li>
+                <li><a href="#orders" class="sidebar-link" data-section="order-section">Orders</a></li>
+                <li><a href="#create-custom-order" class="sidebar-link" data-section="create-custom-order-section">Create Custom Order</a></li>
+                <li><a href="#custom-orders" class="sidebar-link" data-section="custom-orders-section">Custom Orders</a></li>
+            </ul>
+        </div>
+        <div class="br content">
+            <div id="profile-section" class="br profile-sec section active">
+                <h1 class="br">Profile</h1>
+                <form class="br form" action="/profile" method="POST">
+                    <div class="br grid-display">
+                        <div class=" inputForm first-input">
+                            <label for="firstname">First Name:</label>
+                            <input class="input" type="text" id="firstname" name="firstname" value="<%= user.firstname %>" required>
+                        </div>
+                        <div class="inputForm">
+                            <label for="lastname">Last Name:</label>
+                            <input class="input" type="text" id="lastname" name="lastname" value="<%= user.lastname %>" required>
+                        </div>
+                        <div class="inputForm">
+                            <label for="mobile">Mobile:</label>
+                            <input type="tel" id="signup-mobile" class="input" name="mobile" value="<%= user.mobile %>" placeholder="Mobile Number"  required>
+                        </div>
+                        <div class="inputForm">
+                            <label for="email">Email:</label>
+                            <input class="input" type="email" id="email" name="email" value="<%= user.email %>" readonly required>
+                        </div>
+                        <div class="inputForm">
+                            <label for="address1">Address 1:</label>
+                            <input class="input" type="text" id="address1" name="address1" value="<%= user.address1 %>" required>
+                        </div>
+                        <div class="inputForm">
+                            <label for="address2">Address 2:</label>
+                            <input class="input" type="text" id="address2" name="address2" value="<%= user.address2 %>">
+                        </div>
+                        <div class="inputForm">
+                            <label for="city">City:</label>
+                            <input class="input" type="text" id="city" name="city" value="<%= user.city %>" required>
+                        </div>
+                        <div class="inputForm">
+                            <label for="state">State:</label>
+                            <input class="input" type="text" id="state" name="state" value="<%= user.state %>" required>
+                        </div>
+                        <div class="inputForm">
+                            <label for="country">Country:</label>
+                            <input class="input" type="text" id="country" name="country" value="<%= user.country %>" required>
+                        </div>
+                        <div class="inputForm last-input">
+                            <label for="pincode">Pin Code:</label>
+                            <input class="input" type="text" id="pincode" name="pincode" value="<%= user.pincode %>" required>
+                        </div>
+                    </div>
+                    <button class="button-submit" type="submit">Update Profile</button>
+                </form>
+            </div>
+
+            <div id="order-section" class="br brr ord-sec-1 section">
+                <h1 class="brr ord-h1">Orders</h1>
+                <% if (orders.length > 0) { %>
+                    <ul>
+                        <div class="brr orderlist">
+                            <% orders.forEach(order => { %>
+                                <div class="orders">
+                                    <div class="block1">
+                                        <li id="order-<%= order._id %>">
+                                            <h3 class="brr orderh3">
+                                                <span class="br ord-sec-info  ">Order Date: <span class="br fade-info  "><%= order.orderDate.toDateString() %></span></span>
+                                                <span class="br ord-sec-info  ">Order ID- <span class="br fade-info  "><%= order._id %></span></span>
+                                            </h3>
+
+                                            <span class="br ord-sec-info  ">Total: <span class="br fade-info  ">Rs.<%= order.total %></span></span>
+                                            
+                                        </li>
+                                    </div>
+                                    <div class="block2">
+                                        <ul>
+                                            <% order.products.forEach(item => { %>
+                                                <% if (item.product) { %>
+                                                    
+                                                        <p class="br  ord-sec-info ord-sec-info-p"><%= item.product.name %></p>
+                                                        <li class="orderh3">
+                                                        <span class="br ord-sec-info  ">Color: <span class="br fade-info  "><%= item.color %></span></span>
+                                                        <span class="br ord-sec-info  ">Size: <span class="br fade-info  "><%= item.size %></span></span>
+                                                    </li> 
+                                                    <li class="orderh3">
+                                                        <span class="br ord-sec-info  ">Quantity: <span class="br fade-info  "><%= item.quantity %></span></span>
+                                                        <span class="ord-sec-info ">Status: <span class="br fade-info  "><%= order.status %></span></span>
+                                                    </li>
+                                                <% } else { %>
+                                                    <li>Unknown product - Quantity: <%= item.quantity %></li>
+                                                <% } %>
+                                            <% }) %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </ul>
+                <% } else { %>
+                    <h2 class="br ord-h1">No previous orders</h2>
+                <% } %>
+            </div>
+
+            <div id="create-custom-order-section" class="cust-ord-sec section">
+                <h1 class="br">Create Your Own Custom Order</h1>
+                <div class="custom-ord br profile-section">
+                    <form action="/custom-order/create-custom-order" method="POST" class="br  form">
+                        <div class="br grid-display">
+                        <div class="inputForm">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" value="<%= user.firstname %> <%= user.lastname %>" readonly class="input">
+                        </div>
+                        <div class="inputForm">
+                            <label for="clothingType">Type of Clothing:</label>
+                            <select id="clothingType" name="clothingType" required class="input">
+                                <option value="T-Shirt">T-Shirt</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        <div class="inputForm">
+                            <label for="color">Color:</label>
+                            <input type="text" id="color" name="color" required class="input">
+                        </div>
+                        <div class="inputForm">
+                            <label for="size">Size:</label>
+                            <select id="size" name="size" required class="input">
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                        <div class="inputForm">
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" placeholder="Tell us what you want" required class="input"></textarea>
+                        </div>
+                    </div>
+                        <button type="submit" class="button-submit">Create Request</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="custom-orders-section" class="br ord-sec section">
+                <h1>Previous Custom Orders</h1>
+                <% if (customOrders.length > 0) { %>
+                    <ul>
+                        <% customOrders.forEach(order => { %>
+                            <li class="br">
+                                <div class="br obj obj1">
+                                <span class="br ord-sec-info  ">Type of Clothing: <span class="br fade-info "> <%= order.clothingType %></span></span>
+                                <span class="br ord-sec-info ">Color:<span class="br fade-info "> <%= order.color %></span></span>
+                                <span class="br ord-sec-info ">Size:<span class="br  fade-info"> <%= order.size %></span></span>
+                                </div><div class="br obj obj2">
+                                <span class="br ord-sec-info ord-sec-info-d  ">Description:<span class="br fade-info "> <%= order.description %></span></span>
+                            </div><div class="br obj obj3">
+                                <span class="br ord-sec-info ">Status:<span class="br fade-info "> <%= order.status %></span></span>
+                                <span class="br ord-sec-info ">Ordered At: <span class="br fade-info "><%= order.createdAt.toDateString() %></span></span>
+                                </div>
+                            </li>
+                            
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p>No previous custom orders found.</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <%- include('footbar') %>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      socket.on('orderStatusUpdate', (data) => {
+        alert(`Order ${data.orderId} status updated to ${data.status}`);
+        const orderElement = document.getElementById(`order-${data.orderId}`);
+        if (orderElement) {
+          orderElement.querySelector('.order-status').textContent = `Status: ${data.status}`;
+        }
+      });
+
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+          link.addEventListener('click', function(event) {
+              event.preventDefault();
+              document.querySelectorAll('.section').forEach(section => {
+                  section.classList.remove('active');
+              });
+              const sectionId = this.getAttribute('data-section');
+              document.getElementById(sectionId).classList.add('active');
+          });
+      });
+    </script>
+</body>
+</html>

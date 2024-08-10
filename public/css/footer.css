@@ -1,0 +1,262 @@
+:root {
+  --primary-color: #000000;
+  --secondary-color: #4A4A4A;
+  --accent-color: #D3D3D3;
+  --background-color: #FFFFFF;
+  --text-color: #1C1C1C;
+  --white-text: #ffffffd2;
+  --bg-card: #27272a;
+--primary: #242425;
+--primary-800: #4c1d95;
+--primary-shadow: #2e1065;
+--light: #aeabab;
+--dark: #ac5353c9;
+--zinc-800: #18181b;
+--bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
+--pinkipinkibg: rgb(231, 207, 216);
+    --pinkichck: #FEDCBB;
+    --last-bgcolor: #252727b8;
+}
+
+@font-face {
+  font-family: 'rn';
+  src: url('/Fonts/reina-neue/ReinaNeueCapitals-Thin.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+footer {
+    /* width: 100%; */
+    height: auto;
+    position: relative;
+    bottom: 0; /* Ensure the footer is at the bottom of the page */
+    border-top: 2px solid white;
+    
+    margin:  2%;
+    background-color: var(--primary-color); /* Add a background color for visibility */
+    
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+.footer-container-1{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.block{
+  /* border: 2px solid white; */
+  color: #FFFFFF;
+}
+
+.block1{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  /* border: 1px solid blue; */
+  
+}
+.block1-text{
+  font-size: 1.5vw;
+  font-family: 'Gupter';
+  /* border: 1px solid blue; */
+  margin: 0 5%;
+}
+.block1-1{
+  /* border: 2px solid white; */
+  margin: 2% 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-evenly;
+  
+}
+.block1-1 input{
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  height: 60%;
+  width: 50%;
+  border-bottom: .5px solid white;
+
+}
+.block1-1 input:focus{
+  border: none;
+  outline: none;
+  border-bottom: .5px solid white;
+}
+.block1-1 input::placeholder{
+  color: #FFFFFF;
+  font-family: 'rn';
+  letter-spacing: 2px;
+  opacity: 75%;
+  
+}
+.button {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-family: 'rn';
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: rgb(255, 255, 255);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button:hover::before {
+  scale: 3;
+}
+
+.button:hover {
+  color: #212121;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+}
+
+.button:active {
+  scale: 1;
+}
+
+table{
+  /* width: 400px; */
+  color: white;
+}
+
+.styled-table thead{
+  margin: 50px 0;
+
+}
+
+th{
+  /* border: 2px solid white; */
+  width: 13vw;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.8vw;
+  font-family: 'Gupter';
+  margin: 50px 0;
+  height: 70px;
+}
+
+td{
+  font-size: 1.2vw;
+  font-family: 'Gupter';
+  opacity: 75%;
+  width: 7vw;
+  
+}
+
+
+
+
+
+.block3{
+  font-size: 18VW;
+  opacity: 75%;
+  text-shadow: -3px -3px 10px #d8d8d084;
+  font-weight: 100;
+  /* text-decoration: 2.5% underline; */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+
+}
+.black-white1{
+    background: linear-gradient(to right, white 50%, black 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+.black-white2{
+  color: #000000;
+}
+.black-white3{
+  background: linear-gradient(to right,  black 50%, white 50%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: none;
+}
+
+.block3 img{
+  object-fit: cover;
+  height: 35vw;
+  /* width: 350px; */
+  position: absolute;
+  right: 10%;
+  top: 35%;
+  z-index: -1;
+}
+
+
+
+
+
+.block4{
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 769px) {
+  .footer-container-1{
+    flex-direction: column-reverse;
+  }
+  .block3 img{
+    top: 70%;
+  }
+  .block1-text{
+    position: absolute;
+    top: 0;
+    font-size: 20px;
+
+  }
+  .block2{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .styled-table{
+    width: 100%;
+    margin: 40px 10px;
+    
+
+  }
+  .block1{
+    margin: 40px 0;
+  }
+  th{
+    font-size: 18px;
+  }
+  td{
+    font-size: 16px;
+  }
+ 
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/store.css">
+</head>
+<body class="store-body">
+    <%- include('topbar') %>
+    <div class="br">
+        <div class="br main-heading">
+            <span>OUR PRODUCT</span>
+        </div>
+        <div class="br store-content">
+
+            <div class="sidebar br store-content-left">
+                <h2>CATEGORIES</h2>
+                <ul>
+                    <li><a href="#" data-category="Men"="">MEN</a></li>
+                    <li><a href="#" data-category="Women">WOMEN</a></li>
+                    <li><a href="#" data-category="Winter-Collection">WINTER COLLECTION</a></li>
+                    
+                </ul>
+                <h2>COLLECTIONS</h2>
+                <ul>
+                    <li><a href="#" data-subcategory="T-shirts">T-SHIRTS</a></li>
+                    <li><a href="#" data-subcategory="Joggers">JOGGERS</a></li>
+                    <li><a href="#" data-subcategory="Hoodies">HOODIES</a></li>
+                    <li><a href="#" data-subcategory="Jackets">JACKETS</a></li>
+                    <li><a href="#" data-subcategory="Shirts">SHIRTS</a></li>
+                    <li><a href="#" data-subcategory="Pants">PANTS</a></li>
+                </ul>
+
+                <div class="filter-section">
+                    <h3>SIZE</h3>
+                    <div class="filter-options">
+                        <button><a href="#"data-size="s">S</a></button>
+                        <button><a href="#"data-size="m">M</a></button>
+                        <button><a href="#"data-size="l">L</a></button>
+                        <button><a href="#"data-size="xl">XL</a></button>
+                        <button><a href="#"data-size="xxl">XXL</a></button>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>COLORS</h3>
+                    <div class="filter-options">
+                        <a href="#" data-color="white"><button style="background-color: #fffefe;"></button></a>
+                        <a href="#" data-color="black"><button style="background-color: #000000;"></button></a>
+                        <a href="#" data-color="red"><button style="background-color: #ff0000;"></button></a>
+                        <a href="#" data-color="lavender"><button style="background-color: #c08cfa;"></button></a>
+                        <a href="#" data-color="blue"><button style="background-color: #0015ff;"></button></a>
+                        <a href="#" data-color="yellow"><button style="background-color: #d1ff5c;"></button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="br store-content-right">
+
+                <div class="br store-content-right-top">
+                    <div class="br search-bar">
+                        <div class="search-bar-input" >
+                            <input id="search-input" placeholder="Search "class="ui-input" type="text"/>
+                        </div>
+                        
+                        <div class="br ui-input-icon" id="search-icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path
+                                    stroke-linejoin="round"
+                                    stroke-linecap="round"
+                                    stroke-width="2"
+                                    stroke="currentColor"
+                                    d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z">   
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="br sort-by">
+                        <label for="sort">Sort by</label>
+                        <select id="sort">
+                            <option value="popular">Popular</option>
+                            <option value="newest">Newest</option>
+                            <option value="price-low-high">Price: Low to High</option>
+                            <option value="price-high-low">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="store-products">
+                    <div id="product-list" class="product-list">
+                        <!-- Categories and products will be dynamically loaded here -->
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <script src="/js/store.js"></script>
+    <script src="/js/cart.js"></script>
+    
+</body>
+<%- include('footbar') %>
+</html>
